@@ -1,0 +1,27 @@
+info:
+  contact: {}
+paths:
+  /problems:
+    get:
+      parameters:
+      - description: 页码
+        in: query
+        name: page
+        type: integer
+      - description: 每页数量
+        in: query
+        name: size
+        type: integer
+      - description: 关键字
+        in: query
+        name: keyword
+        type: string
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 获取题目列表
+      tags:
+      - 公共方法
+swagger: "2.0"
