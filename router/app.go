@@ -35,6 +35,12 @@ func Router() *gin.Engine {
 			problemAPI.GET("", service.GetProblemList)
 			problemAPI.GET("/:id", service.GetProblemDetail)
 		}
+		authAPI := apiv1.Group("/auth")
+		authAPI.Use()
+		{
+			authAPI.POST("/register", service.Register)
+			authAPI.POST("/login", service.Login)
+		}
 	}
 
 	return r
