@@ -5,7 +5,9 @@ import (
 )
 
 type Problem struct {
-	gorm.Model
+	ID
+	Timestamps
+	SoftDelete
 	Identity   string `gorm:"column:identity;type:varchar(36);" json:"identity"`       // 问题表的唯一标识
 	CategoryId string `gorm:"column:category_id;type:varchar(36);" json:"category_id"` // 问题所属的分类
 	Title      string `gorm:"column:title;type:varchar(255);" json:"title"`            // 文章标题

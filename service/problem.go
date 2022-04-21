@@ -20,8 +20,8 @@ import (
 // @Router /problems [get]
 func GetProblemList(c *gin.Context) {
 
-	page, _ := strconv.Atoi(c.DefaultQuery("page", config.DefaultPage))
-	size, _ := strconv.Atoi(c.DefaultQuery("size", config.DefaultSize))
+	page, _ := strconv.Atoi(c.DefaultQuery("page", config.AppSetting.DefaultPage))
+	size, _ := strconv.Atoi(c.DefaultQuery("size", config.AppSetting.DefaultPageSize))
 	keyword := c.Query("keyword")
 
 	data := make([]*models.Problem, 0)

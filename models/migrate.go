@@ -1,5 +1,14 @@
 package models
 
+import (
+	"log"
+)
+
 func init() {
-	DB.AutoMigrate(&Problem{})
+	err := DB.AutoMigrate(
+		&Problem{},
+	)
+	if err != nil {
+		log.Println("gorm Init Error : ", err)
+	}
 }
