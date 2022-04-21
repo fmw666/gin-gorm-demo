@@ -6,7 +6,7 @@ import (
 
 func init() {
 	err := DB.AutoMigrate(
-		&Problem{},
+		&Problem{}, &Category{}, &ProblemCategory{},
 	)
 	if err != nil {
 		log.Println("gorm Init Error : ", err)

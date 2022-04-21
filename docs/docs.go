@@ -51,6 +51,31 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/problems/{id}": {
+            "get": {
+                "tags": [
+                    "公共方法"
+                ],
+                "summary": "获取题目详情",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "题目ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     }
 }`

@@ -13,8 +13,8 @@ func initSwagger() {
 	docs.SwaggerInfo.Title = "OJ SYS API"
 	docs.SwaggerInfo.Description = "Gin API"
 	docs.SwaggerInfo.Version = "1.0"
-	docs.SwaggerInfo.Host = "gin-ojsys.cn"
-	docs.SwaggerInfo.BasePath = "/"
+	docs.SwaggerInfo.Host = config.ServerSetting.PrefixUrl
+	docs.SwaggerInfo.BasePath = "/api/v1"
 	// docs.SwaggerInfo.Schemes = []string{"http", "https"}
 }
 
@@ -27,7 +27,15 @@ func Router() *gin.Engine {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	// 路由规则
-	r.GET("/problems", service.GetProblemList)
+	apiv1 := r.Group("/api/v1")
+	{
+		problemAPI := apiv1.Group("/problems")
+		problemAPI.Use()
+		{
+			problemAPI.GET("", service.GetProblemList)
+			problemAPI.GET("/:id", service.GetProblemDetail)
+		}
+	}
 
 	return r
 }

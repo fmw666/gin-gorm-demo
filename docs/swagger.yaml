@@ -24,4 +24,20 @@ paths:
       summary: 获取题目列表
       tags:
       - 公共方法
+  /problems/{id}:
+    get:
+      parameters:
+      - description: 题目ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 获取题目详情
+      tags:
+      - 公共方法
 swagger: "2.0"

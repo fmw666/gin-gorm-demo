@@ -45,3 +45,28 @@ func GetProblemList(c *gin.Context) {
 		},
 	})
 }
+
+// GetProblemDetail 获取题目详情
+// @Tags 公共方法
+// @Summary 获取题目详情
+// @Param id path int true "题目ID"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+// @Router /problems/{id} [get]
+func GetProblemDetail(c *gin.Context) {
+
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	data := &models.Problem{}
+
+	tx := models.GetProblemDetail(id)
+	err := tx.First(data).Error
+	if err != nil {
+		log.Println("GetProblemDetail Error : ", err)
+		data = nil
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"data": data,
+	})
+}
